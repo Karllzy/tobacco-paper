@@ -4,7 +4,8 @@ import copy
 
 
 class GWO:
-    def __init__(self, upper_border, lower_border, judge_func, goal, num_wolf=5, epochs=10, minimize=True):
+    def __init__(self, upper_border, lower_border, judge_func, goal, num_wolf=5, epochs=10, minimize=True,
+                 spirit_wolf=None):
         # Judge Function and Goal
         self.judge_func, self.goal = judge_func, goal
         # lower border and upper border
@@ -26,10 +27,12 @@ class GWO:
         # get the position of search agents
         self.positions = np.random.uniform(self.lb, self.ub, (num_wolf, self.dim))
         self.convergence_curve = []
+        self.wolfs_fitness = []
 
     def run(self):
         epoch = 0
         while epoch < self.epochs:
+            wolf_fitness = []
             for i in range(self.positions.shape[0]):
                 wolf = self.positions[i, :]
                 # Return back the search agents that go beyond the boundaries of the search space
@@ -39,7 +42,7 @@ class GWO:
                 # calculate the fitness value
 
                 fitness = self.judge_func(wolf)
-
+                wolf_fitness.append(fitness)
                 if self.minimize:
                     # update alpha, beta, delta
                     if fitness < self.alpha_score:
@@ -87,7 +90,7 @@ class GWO:
                     x3 = self.delta_pos[j] - A3 * D_delta
 
                     self.positions[i, j] = (x1+x2+x3)/3
-
+            self.wolfs_fitness.append(wolf_fitness.copy())
             self.convergence_curve.append(self.alpha_score)
             epoch += 1
             print("Generation ", epoch, "finish! Best value = ", self.alpha_score)
