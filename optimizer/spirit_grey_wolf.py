@@ -31,7 +31,7 @@ class SpiritGWO:
         self.wolfs_fitness = []
         # initialize the spirit wolf
         self.spirit_wolf = spirit_wolf
-        self.final_affect = 1 / epochs
+        self.final_affect = 1.0 / epochs
         self.tau = 2 * np.log(self.final_affect)/epochs
 
     def run(self):

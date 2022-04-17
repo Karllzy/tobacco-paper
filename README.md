@@ -1,5 +1,8 @@
 # Band Selection for an Online Sorting System for Tobacco
 
+## Install
+
+
 ## Data preprocessing
 
 We conduct a series of pre-processing steps including the black-white calibration(done by C program when data was collected), bandwised signal-noize rate thresholding, data smoothing, Multiplicative Scattering Correction(MSC) and Standard Normal correction (SNC).
