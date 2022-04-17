@@ -1,3 +1,5 @@
+from tkinter import N
+from tkinter.messagebox import NO
 import numpy as np
 import copy
 # 白眼狼优化算法！
@@ -5,7 +7,7 @@ import copy
 
 class GWO:
     def __init__(self, upper_border, lower_border, judge_func, goal, num_wolf=5, epochs=10, minimize=True,
-                 spirit_wolf=None):
+                initial_seed=None):
         # Judge Function and Goal
         self.judge_func, self.goal = judge_func, goal
         # lower border and upper border
@@ -25,6 +27,8 @@ class GWO:
         # a minimization problem or not ?
         self.minimize = minimize
         # get the position of search agents
+        if initial_seed is not None:
+            np.random.seed(initial_seed)
         self.positions = np.random.uniform(self.lb, self.ub, (num_wolf, self.dim))
         self.convergence_curve = []
         self.wolfs_fitness = []

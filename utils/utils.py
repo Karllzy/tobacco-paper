@@ -1,6 +1,4 @@
 import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.offsetbox import TextArea, AnnotationBbox
 
 
 def read_envi_ascii(file_name, save_xy=False, hdr_file_name=None):

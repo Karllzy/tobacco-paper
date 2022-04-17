@@ -1,5 +1,5 @@
 dataset/*
-
+.vscode
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 profile_default/
